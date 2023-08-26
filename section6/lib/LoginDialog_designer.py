@@ -30,6 +30,7 @@ class Ui_Dialog(object):
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
         self.lineEdit.setGeometry(QtCore.QRect(110, 30, 113, 20))
         self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit.setFocus(True)
         self.lineEdit_2 = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_2.setGeometry(QtCore.QRect(110, 70, 113, 20))
         self.lineEdit_2.setObjectName("lineEdit_2")

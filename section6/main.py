@@ -86,15 +86,31 @@ class Main(QMainWindow, Ui_MainWindow):
         self.user_pw = dlg.user_pw
 
         # if문에서 비교 
-        print(self.user_id, self.user_pw)
+        # print(self.user_id, self.user_pw)
 
         if self.user_id == "t" and self.user_pw == "1":
             self.initAuthenticationActive()
             self.loginButton.setText("인증완료")
             self.loginButton.setEnabled(False)
             self.urlTextEdit.setFocus(True)
+
+            # log 추가
+            self.append_log_msg("login Success")
         else:
             QMessageBox.critical(self, "인증오류", "ID 또는 비밀번호 인증 오류")
+
+
+    def append_log_msg(self, act):
+        now = datetime.datetime.now()
+        nowDatetime = now.strftime('%Y-%m-%d %H:%M:%S')
+        app_msg = self.user_id + ' : ' + act + '-(' + nowDatetime + ')'
+        print(app_msg)
+        self.plainTextEdit.appendPlainText(app_msg)
+
+        # 활동 로그 저장 ( 또는 DB )
+        with open(r'C:\nado_python\nodo_python-1\section6\log\log.txt', 'a') as f:
+            f.write(app_msg+'\n')
+    
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
